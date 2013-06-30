@@ -10,6 +10,11 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 
+#define FP_POPOVER_DEFAULT_RADIUS       10.0
+#define FP_POPOVER_DEFAULT_ARROW_BASE   20.0
+#define FP_POPOVER_DEFAULT_BORDER_SIZE  10.0
+#define FP_POPOVER_DEFAULT_ARROW_HEIGHT 10.0
+
 typedef enum FPPopoverArrowDirection: NSUInteger {
     FPPopoverArrowDirectionUp = 1UL << 0,
     FPPopoverArrowDirectionDown = 1UL << 1,
@@ -49,6 +54,12 @@ typedef enum {
 @property(nonatomic,assign) FPPopoverTint tint;
 @property(nonatomic,assign) BOOL draw3dBorder;
 @property(nonatomic,assign) BOOL border; //default YES
+
+@property (nonatomic) CGFloat popoverArrowHeight;
+@property (nonatomic) CGFloat popoverArrowBase;
+@property (nonatomic) CGFloat popoverRadius;
+@property (nonatomic) CGFloat popoverBorderSize;
+@property (nonatomic) BOOL automaticalyAdjustContentRadius;
 
 -(void)setArrowDirection:(FPPopoverArrowDirection)arrowDirection;
 -(FPPopoverArrowDirection)arrowDirection;

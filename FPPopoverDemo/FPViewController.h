@@ -17,9 +17,11 @@
 #if __has_feature(objc_arc)
     @property (weak, nonatomic) IBOutlet UIButton *noArrow;
     @property (weak, nonatomic) IBOutlet UIButton *transparentPopover;
+    @property (weak, nonatomic) IBOutlet UIButton *noTitle;
 #else
     @property (assign, nonatomic) IBOutlet UIButton *noArrow;
     @property (assign, nonatomic) IBOutlet UIButton *transparentPopover;
+    @property (assign, nonatomic) IBOutlet UIButton *noTitle;
 #endif
 
 -(IBAction)topLeft:(id)sender;
@@ -44,5 +46,6 @@
 
 -(IBAction)noArrow:(id)sender;
 -(IBAction)popover:(id)sender;
+-(IBAction)noTitle:(id)sender;
 
 @end

@@ -74,6 +74,9 @@
     {
         popover.alpha = 0.5;
     }
+    else if(sender == _noTitle) {
+        controller.title = nil;
+    }
     
     if(sender == _noArrow) {
         //no arrow
@@ -93,6 +96,10 @@
     [self popover:sender];
 }
 
+-(IBAction)noTitle:(id)sender
+{
+    [self popover:sender];
+}
 
 - (void)presentedNewPopoverController:(FPPopoverController *)newPopoverController 
           shouldDismissVisiblePopover:(FPPopoverController*)visiblePopoverController
