@@ -9,8 +9,6 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 
-#import "ARCMacros.h"
-
 #import "FPPopoverView.h"
 #import "FPTouchView.h"
 
@@ -24,14 +22,11 @@
           shouldDismissVisiblePopover:(FPPopoverController*)visiblePopoverController;
 @end
 
+
 @interface FPPopoverController : UIViewController
 
-//ARC-enable and disable support
-#if __has_feature(objc_arc)
-    @property(nonatomic,weak) id<FPPopoverControllerDelegate> delegate;
-#else
-    @property(nonatomic,assign) id<FPPopoverControllerDelegate> delegate;
-#endif
+@property(nonatomic, weak) id<FPPopoverControllerDelegate> delegate;
+
 
 /** @brief FPPopoverArrowDirectionAny, FPPopoverArrowDirectionVertical or FPPopoverArrowDirectionHorizontal for automatic arrow direction.
  **/

@@ -82,19 +82,14 @@
 
 -(void)dealloc
 {
-    [self removeObservers];
     if(_shadowColor) CGColorRelease(_shadowColor);
 
 #ifdef FP_DEBUG
     NSLog(@"FPPopoverController dealloc");
 #endif
 
-    SAFE_ARC_RELEASE(_contentView);
-    SAFE_ARC_RELEASE(_touchView);
     self.delegate = nil;
     _viewController = nil;
-    
-    SAFE_ARC_SUPER_DEALLOC();
 }
 
 -(id)initWithViewController:(UIViewController*)viewController {
@@ -121,9 +116,9 @@
         [self.view addSubview:_touchView];
         
         
-        __block typeof (self) bself = self;
+        __weak typeof(self) weakSelf = self;
         [_touchView setTouchedOutsideBlock:^{
-            [bself dismissPopoverAnimated:YES];
+            [weakSelf dismissPopoverAnimated:YES];
         }];
 
         self.contentSize = CGSizeMake(200, 300); //default size
@@ -187,7 +182,6 @@
     [_contentView addContentView:_viewController.view];
 
     [self setupView];
-    [self addObservers];
 }
 
 #pragma mark Orientation
@@ -246,16 +240,19 @@
         [self dismissPopoverAnimated:NO];
     }
     
-    
-    
     [self setupView];
+    
     self.view.alpha = 0.0;
+    
+    __weak typeof(self) weakSelf = self;
+    
     [UIView animateWithDuration:0.2 animations:^{
-        
-        self.view.alpha = self.alpha;
+        weakSelf.view.alpha = weakSelf.alpha;
     }];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"FPNewPopoverPresented" object:self];
+    
+    [self addObservers];
 }
 
 
@@ -326,7 +323,8 @@
 		if (completionBlock)
 			completionBlock();
     }
-         
+    
+    [self removeObservers];
 }
 
 -(void)setOrigin:(CGPoint)origin

@@ -54,25 +54,25 @@
 {
     //NSLog(@"popover retain count: %d",[popover retainCount]);
 
-    SAFE_ARC_RELEASE(popover); popover=nil;
+    self.popover = nil;
     
     //the controller we want to present as a popover
     DemoTableController *controller = [[DemoTableController alloc] initWithStyle:UITableViewStylePlain];
     controller.delegate = self;
-    popover = [[FPPopoverController alloc] initWithViewController:controller];
-    popover.tint = FPPopoverDefaultTint;
+    self.popover = [[FPPopoverController alloc] initWithViewController:controller];
+    self.popover.tint = FPPopoverDefaultTint;
     
     
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
     {
-        popover.contentSize = CGSizeMake(300, 500);
+        self.popover.contentSize = CGSizeMake(300, 500);
     }
     else {
-        popover.contentSize = CGSizeMake(200, 300);
+        self.popover.contentSize = CGSizeMake(200, 300);
     }
     if(sender == transparentPopover)
     {
-        popover.alpha = 0.5;
+        self.popover.alpha = 0.5;
     }
     else if(sender == _noTitle) {
         controller.title = nil;
@@ -80,13 +80,13 @@
     
     if(sender == _noArrow) {
         //no arrow
-        popover.arrowDirection = FPPopoverNoArrow;
-        [popover presentPopoverFromPoint: CGPointMake(self.view.center.x, self.view.center.y - popover.contentSize.height/2)];
+        self.popover.arrowDirection = FPPopoverNoArrow;
+        [self.popover presentPopoverFromPoint: CGPointMake(self.view.center.x, self.view.center.y - self.popover.contentSize.height/2)];
     }
     else {
         //sender is the UIButton view
-        popover.arrowDirection = FPPopoverArrowDirectionAny;
-        [popover presentPopoverFromView:sender];
+        self.popover.arrowDirection = FPPopoverArrowDirectionAny;
+        [self.popover presentPopoverFromView:sender];
     }
 
 }
@@ -171,7 +171,7 @@
 -(void)selectedTableRow:(NSUInteger)rowNum
 {
     NSLog(@"SELECTED ROW %d",rowNum);
-    [popover dismissPopoverAnimated:YES];
+    [self.popover dismissPopoverAnimated:YES];
 }
 
 

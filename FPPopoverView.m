@@ -8,7 +8,6 @@
 
 
 #import "FPPopoverView.h"
-#import "ARCMacros.h"
 
 //iVars
 @interface FPPopoverView()
@@ -38,9 +37,6 @@
 #ifdef FP_DEBUG
     NSLog(@"FPPopoverView dealloc");
 #endif
-
-    SAFE_ARC_RELEASE(_titleLabel);
-    SAFE_ARC_SUPER_DEALLOC();
 }
 
 

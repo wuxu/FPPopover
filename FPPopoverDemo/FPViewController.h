@@ -8,21 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "FPPopoverController.h"
-#import "ARCMacros.h"
+
 @interface FPViewController : UIViewController <FPPopoverControllerDelegate>
 {
-    FPPopoverController *popover;
+    
 }
-//ARC-enable and disable support
-#if __has_feature(objc_arc)
-    @property (weak, nonatomic) IBOutlet UIButton *noArrow;
-    @property (weak, nonatomic) IBOutlet UIButton *transparentPopover;
-    @property (weak, nonatomic) IBOutlet UIButton *noTitle;
-#else
-    @property (assign, nonatomic) IBOutlet UIButton *noArrow;
-    @property (assign, nonatomic) IBOutlet UIButton *transparentPopover;
-    @property (assign, nonatomic) IBOutlet UIButton *noTitle;
-#endif
+
+@property (nonatomic, retain) FPPopoverController *popover;
+
+@property (weak, nonatomic) IBOutlet UIButton *noArrow;
+@property (weak, nonatomic) IBOutlet UIButton *transparentPopover;
+@property (weak, nonatomic) IBOutlet UIButton *noTitle;
 
 -(IBAction)topLeft:(id)sender;
 -(IBAction)topCenter:(id)sender;
